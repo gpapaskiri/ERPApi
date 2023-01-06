@@ -1,0 +1,79 @@
+version: 1
+
+formatters:
+  debug:
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  info:
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  warning:
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  error:
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  critical:
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+filters:
+  debug:
+    (): log_filters.DebugFilter
+  info:
+    (): log_filters.InfoFilter
+  warning:
+    (): log_filters.WarningFilter
+  error:
+    (): log_filters.ErrorFilter
+  critical:
+    (): log_filters.CriticalFilter
+
+
+handlers:
+  debug:
+    class: logging.handlers.TimedRotatingFileHandler
+    when: midnight
+    interval: 1
+    backupCount: 7
+    level: DEBUG
+    formatter: debug
+    filters: [ debug ]
+    filename: logs/debug.log
+  info:
+    class: logging.handlers.TimedRotatingFileHandler
+    when: midnight
+    interval: 2
+    backupCount: 7
+    level: INFO
+    formatter: info
+    filters: [ info ]
+    filename: logs/info.log
+  warning:
+    class: logging.handlers.TimedRotatingFileHandler
+    when: midnight
+    interval: 3
+    backupCount: 14
+    level: WARNING
+    formatter: warning
+    filters: [ warning ]
+    filename: logs/warning.log
+  error:
+    class: logging.handlers.TimedRotatingFileHandler
+    when: midnight
+    interval: 7
+    backupCount: 5
+    level: ERROR
+    formatter: error
+    filters: [ error ]
+    filename: logs/error.log
+  critical:
+    class: logging.handlers.TimedRotatingFileHandler
+    when: midnight
+    interval: 14
+    backupCount: 2
+    level: CRITICAL
+    formatter: critical
+    filters: [ critical ]
+    filename: logs/critical.log
+
+loggers:
+  root:
+    level: DEBUG
+    handlers: [ debug, info, warning, error, critical ]
+    propagate: yes
