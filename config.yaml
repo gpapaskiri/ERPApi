@@ -1,8 +1,8 @@
 version: 1
 
 erp:
-  url: https://erp.a-mobile.biz/api.php
-  key: lknlkdejtendfnvlsdjdtfasafdc
+  url: https://erp.example.com/api.php
+  key: 39kf054kv054kvj54scds54
 
 uvicorn:
   host: 0.0.0.0
