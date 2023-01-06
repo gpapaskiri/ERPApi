@@ -1,6 +1,6 @@
 venv
+logs
 *.pyc
 *pycache*
 test*
 .idea*
-logs
